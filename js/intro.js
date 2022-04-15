@@ -2,6 +2,10 @@ let header = document.querySelector('#intro');
 let anim = [
   //animated text that says "Majus-Dev"
   { t: " ", ms: 200},
+  { t: "_", ms: 200},
+  { t: " ", ms: 200},
+  { t: "_", ms: 200},
+  { t: " ", ms: 200},
   { t: "M", ms: 100},
   { t: "Ma", ms: 100},
   { t: "Maj", ms: 100},
