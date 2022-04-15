@@ -7,8 +7,8 @@ let contactToggle = false;
 let _aboutme = document.getElementById("aboutme-content");
 let _projects = document.getElementById("projects-content");
 let _contact = document.getElementById("contact-content");
-// Functions for the navbar
 
+// Functions for the navbar
 function aboutme() {
   console.log("aboutmeToggle");
   switch (aboutmeToggle) {
