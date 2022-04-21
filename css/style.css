@@ -52,7 +52,7 @@ a:link,a:visited,a:hover,a:active,a,p {
   content: "Discord";
 }
 #discord:hover::after {
-  content: "Majus#3460";
+  content: "Majus-Dev#2533";
 }
 #content {
   display: flex;
@@ -73,4 +73,31 @@ a:link,a:visited,a:hover,a:active,a,p {
 }
 .nav-item:hover {
   color: #aaa;
+}
+.red {
+  color: #ff0000; 
+}
+.green {
+  color: #00ff00; 
+}
+.orange {
+  color: #ffa500; 
+}
+#age-h,#age-y {
+  font-weight: bold;
+}
+.content-r {
+  text-align: right;
+  float: right;
+}
+.content-l {
+  text-align: left;
+  float: left;
+}
+.aboutme-content-items {
+  width: 24rem;
+  padding: 2rem;
+}
+span {
+  font-size: 1.5rem;
 }
