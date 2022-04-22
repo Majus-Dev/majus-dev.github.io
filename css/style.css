@@ -59,18 +59,6 @@ a:link,a:visited,a:hover,a:active,a,p {
 .link:hover {
   background-size: 100% 3px;
 }
-/*
-#discord {
-  transition: all 0.5s ease-in-out;
-}
-#discord::after{ 
-  content: "Discord";
-}
-#discord:hover::after {
-  content: "Majus-Dev#2533";
-}
-*/
-
 #content {
   display: flex;
   align-items: bottom;
