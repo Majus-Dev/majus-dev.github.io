@@ -84,7 +84,7 @@ function contact() {
 }
 
 function copyDiscord() {
-  const notification = document.getElementById("copy");
+  const notification = document.getElementById("copy-stuff");
   notification.style.opacity = "100%";
   navigator.clipboard.writeText("Majus-Dev#2533");
   setTimeout(() => {
