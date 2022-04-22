@@ -10,7 +10,6 @@ let _contact = document.getElementById("contact-content");
 
 // Functions for the navbar
 function aboutme() {
-  console.log("aboutmeToggle");
   switch (aboutmeToggle) {
     case false:
       _projects.style.visibility = "hidden";
