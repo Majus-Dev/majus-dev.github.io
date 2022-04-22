@@ -83,6 +83,14 @@ function contact() {
   }
 }
 
+function copyDiscord() {
+  const notification = document.getElementById("copy");
+  notification.style.opacity = "100%";
+  navigator.clipboard.writeText("Majus-Dev#2533");
+  setTimeout(() => {
+    notification.style.opacity = "0%";
+  }, 2000);
+}
 // Eventlisteners for the navbar
 document.getElementById("aboutme").addEventListener("click", aboutme);
 document.getElementById("projects").addEventListener("click", projects);
