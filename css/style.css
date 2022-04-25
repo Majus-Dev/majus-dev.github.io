@@ -82,6 +82,9 @@ a:link,a:visited,a:hover,a:active,a,p {
   position: absolute;
   line-height: 1rem;
 }
+#projects-content {
+  line-height: 3rem;
+}
 .nav-item:hover {
   color: #aaa;
 }
