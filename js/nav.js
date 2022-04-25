@@ -109,7 +109,6 @@ function alignTitle() {
     document.getElementById('content').style.transform = "translate(0rem, 0rem)"
   }
 }
-
 // Eventlisteners for the navbar
 document.getElementById("aboutme").addEventListener("click", aboutme);
 document.getElementById("projects").addEventListener("click", projects);
