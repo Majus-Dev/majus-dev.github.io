@@ -12,7 +12,11 @@ body {
   background-color: #121212;
   color: #fff;
 }
-
+#title,
+#nav,
+#content {
+  transition: transform 1s ease-in-out;
+}
 #main {
   height: 100%;
   padding: 0;
@@ -29,7 +33,7 @@ body {
   justify-content: center;
   gap: 4rem;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
 }
 
 h1 {
@@ -84,6 +88,11 @@ a:link,a:visited,a:hover,a:active,a,p {
 }
 #projects-content {
   line-height: 3rem;
+  display: grid;
+  grid-template-columns: max-content;
+}
+.projects-content-items {
+  overflow: hidden;
 }
 .nav-item:hover {
   color: #aaa;
@@ -95,7 +104,7 @@ a:link,a:visited,a:hover,a:active,a,p {
   color: #00ff00; 
 }
 .orange {
-  color: #ffa500; 
+  color: #ffa500;
 }
 #age-h,#age-y {
   font-weight: bold;

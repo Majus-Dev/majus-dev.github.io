@@ -22,6 +22,7 @@ function aboutme() {
         _aboutme.style.visibility = "visible";
         _aboutme.style.opacity = 1;
         aboutmeToggle = true;
+        alignTitle()
       }, 500);
       break;
     case true:
@@ -29,6 +30,7 @@ function aboutme() {
       setTimeout(() => {
         _aboutme.style.visibility = "hidden";
         aboutmeToggle = false;
+        alignTitle()
       }, 500);
       break;
   }
@@ -46,6 +48,7 @@ function projects() {
         _projects.style.visibility = "visible";
         _projects.style.opacity = 1;
         projectsToggle = true;
+        alignTitle()
       }, 500);
       break;
     case true:
@@ -53,6 +56,7 @@ function projects() {
       setTimeout(() => {
         _projects.style.visibility = "hidden";
         projectsToggle = false;
+        alignTitle()
       }, 500);
       break;
   }
@@ -70,6 +74,7 @@ function contact() {
         _contact.style.visibility = "visible";
         _contact.style.opacity = 1;
         contactToggle = true;
+        alignTitle()
       }, 500);
       break;
     case true:
@@ -77,6 +82,7 @@ function contact() {
       setTimeout(() => {
         _contact.style.visibility = "hidden";
         contactToggle = false;
+        alignTitle()
       }, 500);
       break;
   }
@@ -90,6 +96,20 @@ function copyDiscord() {
     notification.style.opacity = "0%";
   }, 2000);
 }
+
+function alignTitle() {
+  if ( contactToggle || projectsToggle || aboutmeToggle ) {
+    document.getElementById('title').style.transform = "translate(0rem, -5rem)"
+    document.getElementById('nav').style.transform = "translate(0rem, -5rem)"
+    document.getElementById('content').style.transform = "translate(0rem, -5rem)"
+  }
+  else {
+    document.getElementById('title').style.transform = "translate(0rem, 0rem)"
+    document.getElementById('nav').style.transform = "translate(0rem, 0rem)"
+    document.getElementById('content').style.transform = "translate(0rem, 0rem)"
+  }
+}
+
 // Eventlisteners for the navbar
 document.getElementById("aboutme").addEventListener("click", aboutme);
 document.getElementById("projects").addEventListener("click", projects);
