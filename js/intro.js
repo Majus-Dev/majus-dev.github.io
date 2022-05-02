@@ -33,6 +33,7 @@ let update = () => {
       document.getElementById('intro').style.fontSize = '4rem';
       setTimeout(() => {
         document.getElementById("nav").style.opacity = "1";
+        document.getElementById("c").style.opacity = "0.5";
       }, 500);
     }, 200);
 
