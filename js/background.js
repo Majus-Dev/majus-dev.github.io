@@ -94,7 +94,7 @@
     const radius = 3;
     const x = Math.random() * (c.width - radius * 2) + radius;
     const y = Math.random() * (c.height - radius * 2) + radius;
-    const speed = 1 + Math.random() * 2;
+    const speed = 0.3 + Math.random() * 2;
     const directionAngle = Math.floor(Math.random() * degrees);
     const color = "rgba(255,255,255,0.5)";
 
