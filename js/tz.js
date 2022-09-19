@@ -4,7 +4,6 @@ let zones = [
     {name: "Line", tz: "CET", loc: "Europe/Oslo"},
     {name: "Lina", tz: "CET", loc: "Europe/Oslo"},
     {name: "Zelley", tz: "CET", loc: "Europe/Oslo"},
-    {name: "Zelley", tz: "CET", loc: "Europe/Oslo"},
     {name: "Majus", tz: "CET", loc: "Europe/Oslo"},
     {name: "Crim", tz: "EST", loc: "America/Detroit"},
     {name: "Pep", tz: "EST", loc: "America/Detroit"},
