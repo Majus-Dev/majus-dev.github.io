@@ -23,7 +23,7 @@ function loop()
         //console.log(`${z.tz} | ${z.name}: ${t}`)
         let div = document.createElement("div");
         div.classList = "mod";
-        div.innerHTML = `<span class="content-l"><p>${z.tz} | ${z.name}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></span><span class="content-r"><p>${t}</p></span>`
+        div.innerHTML = `<span class="content-l"><p>${z.name}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></span><span class="content-r"><p>${t} | ${z.tz}</p></span>`
         cont.append(div)
     }
 }
