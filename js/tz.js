@@ -11,8 +11,7 @@ let zones = [
     {name: "Toxic", tz: "EST", loc: "America/Detroit"},
     {name: "Wolf", tz: "EST", loc: "America/Detroit"},
     {name: "Timmy", tz: "EST", loc: "America/Detroit"},
-    {name: "Keke", tz: "PST", loc: "America/Los_Angeles"},
-
+    {name: "Keke", tz: "PST", loc: "America/Los_Angeles"}
 ]
 function loop() 
 {
