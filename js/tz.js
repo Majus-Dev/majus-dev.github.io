@@ -17,16 +17,15 @@ let zones = [
 
 let tzones = [
     {name: "Hap", tz: "CET", loc: "Europe/Oslo"},
+    {name: "Locke", tz: "CET", loc: "Europe/Oslo"},
     {name: "Cel", tz: "EST", loc: "America/Detroit"},
     {name: "Cloud", tz: "EST", loc: "America/Detroit"},
     {name: "Ceph", tz: "CST", loc: "America/Chicago"},
     {name: "Scrub", tz: "CST", loc: "America/Chicago"},
-    {name: "Locke", tz: "CET", loc: "Europe/Oslo"},
     {name: "Lila", tz: "PST", loc: "America/Los_Angeles"},
 ]
 
-function loop() 
-{
+function init() {
     const cont = document.getElementById("mods")
     const con2 = document.getElementById("twt")
     if (!cont || !con2) return 
@@ -40,15 +39,31 @@ function loop()
         div.classList = "mod";
         div.innerHTML = `<span class="content-l"><p>${z.name}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></span><span class="content-r" id="timer-${z.name}"><p>${t} | ${z.tz}</p></span>`
         cont.append(div)
-
+    
     }
-    for (let t of tzones) {
-        z = new Intl.DateTimeFormat("en-US", {timeZone: t.loc, timeStyle: "medium"}).format(new Date())
-
+    for (let z of tzones) {
+        t = new Intl.DateTimeFormat("en-US", {timeZone: z.loc, timeStyle: "medium"}).format(new Date())
+    
         let div = document.createElement("div");
         div.classList = "mod";
-        div.innerHTML = `<span class="content-l"><p>${t.name}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></span><span class="content-r"><p>${z} | ${t.tz}</p></span>`
+        div.innerHTML = `<span class="content-l"><p>${z.name}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></span><span class="content-r" id="timer-${z.name}"><p>${t} | ${z.tz}</p></span>`
         con2.append(div)
+    }
+}
+
+function loop() 
+{
+    for (let z of zones) {
+        t = new Intl.DateTimeFormat("en-US", {timeZone: z.loc, timeStyle: "medium"}).format(new Date())
+
+        let spam = document.getElementById(`timer-${z.name}`)
+        spam.innerHTML = `<p>${t} | ${z.tz}`
+    }
+    for (let z of tzones) {
+        t = new Intl.DateTimeFormat("en-US", {timeZone: z.loc, timeStyle: "medium"}).format(new Date())
+        
+        let spam = document.getElementById(`timer-${z.name}`)
+        spam.innerHTML = `<p>${t} | ${z.tz}`
     }
 }
 function looper() {
@@ -57,4 +72,5 @@ function looper() {
         looper()
     }, 1000);
 }
+init()
 looper()
