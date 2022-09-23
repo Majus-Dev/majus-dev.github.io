@@ -23,6 +23,7 @@ let tzones = [
     {name: "Ceph", tz: "CST", loc: "America/Chicago"},
     {name: "Scrub", tz: "CST", loc: "America/Chicago"},
     {name: "Lila", tz: "PST", loc: "America/Los_Angeles"},
+    {name: "Derg", tz: "PST", loc: "America/Los_Angeles"},
 ]
 
 function init() {
