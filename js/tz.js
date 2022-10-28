@@ -5,12 +5,12 @@ let zones = [
     {name: "Lina", tz: "CET", loc: "Europe/Oslo"},
     {name: "Zelley", tz: "CET", loc: "Europe/Oslo"},
     {name: "Majus", tz: "CET", loc: "Europe/Oslo"},
+	{name: "Jay", tz: "GMT", loc: "Europe/London"},
     {name: "Darky", tz: "GMT", loc: "Europe/London"},
     {name: "Crim", tz: "EST", loc: "America/Detroit"},
     {name: "Pep", tz: "EST", loc: "America/Detroit"},
     {name: "Smo", tz: "EST", loc: "America/Detroit"},
     {name: "Toxic", tz: "EST", loc: "America/Detroit"},
-    {name: "Wolf", tz: "EST", loc: "America/Detroit"},
     {name: "Timmy", tz: "EST", loc: "America/Detroit"},
     {name: "Keke", tz: "PST", loc: "America/Los_Angeles"}
 ]
