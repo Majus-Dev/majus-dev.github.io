@@ -18,6 +18,7 @@ let zones = [
 let tzones = [
     {name: "Hap", tz: "CET", loc: "Europe/Oslo"},
     {name: "Locke", tz: "CET", loc: "Europe/Oslo"},
+	{name: "Delta", tz: "GMT", loc: "Europe/London"},
     {name: "Cel", tz: "EST", loc: "America/Detroit"},
     {name: "Cloud", tz: "EST", loc: "America/Detroit"},
     {name: "Ceph", tz: "CST", loc: "America/Chicago"},
