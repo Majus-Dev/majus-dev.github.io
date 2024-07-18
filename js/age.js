@@ -9,10 +9,10 @@ function loop() {
 }
 
 function age() {
-  const birth = new Date(2004, 6, 27);
+  const birth = new Date('06/27/2004');
   const today = new Date();
   const age = (Math.round(((today - birth) / (1000 * 60 * 60))*10000))/10000;
-  const age2 = (Math.round(((today - birth) / (1000 * 60 * 60 * 24 * 365.25))*10000))/10000
+  const age2 = (Math.round(((today - birth) / (1000 * 60 * 60 * 24 * 365))*10000))/10000
   span.innerText = age;
   span2.innerText = age2 ;
 }
