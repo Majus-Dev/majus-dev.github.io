@@ -1,66 +1,99 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Majus-Dev</title>
-    <link rel="stylesheet" href="./css/style.css">
-  </head>
-  <body>
-    <div id="main">
-      <div id="title">
-        <h1 id="intro"></h1>
-      </div>
-      <div id="nav">
-        <div id="aboutme" class="nav-item">
-          <h2>About me</h2>
-        </div>
-        <div id="projects" class="nav-item">
-          <h2>Projects</h2>
-        </div>
-        <div id="contact" class="nav-item">
-          <h2>Contact</h2>
-        </div>
-      </div>  
-      <div id="content">
-        <div id="aboutme-content">
-          <div class="aboutme-content-items">
-            <span class="content-l">I am</span> 
-            <span id="age-h" class="orange"> </span> 
-            <span class="content-r">hours old</span> 
-          </div>
-          <div class="aboutme-content-items">
-            <span class="content-l">Which is also</span> 
-            <span id="age-y" class="orange"></span> 
-            <span class="content-r">years</span> 
-          </div>
-        </div>
-        <div id="projects-content">
-          <div class="projects-content-items">
-            <span class="green content-l">「OPEN SOURCE」</span>
-            <span class="content-r">This very website: <a class="link" href="https://github.com/majus-dev/majus-dev.github.io" target="_blank">GitHub Repo</a></span>
-          </div>
-          <div class="projects-content-items">
-            <span class="green content-l">「OPEN SOURCE」</span>
-            <span class="content-r">Input Overlay made with Electron: <a class="link" href="https://github.com/Majus-Dev/jsio" target="_blank">GitHub Repo</a> </span>
-          </div>
-          <div class="projects-content-items">
-            <span class="red content-l">「CLOSED SOURCE」</span>
-            <span class="content-r">Wordle Leaderboard: Hello Wordle</span>
-          </div>
-        </div>
-        <div id="contact-content">
-          <p><a id="discord" class="link" href="javascript:copyDiscord()">Discord</a></p>
-          <p><a href="http://github.com/majus-dev" target="_blank" rel="noopener noreferrer"  class="link">GitHub</a></p>
-          <p><a href="https://twitter.com/majusdev" target="_blank" rel="noopener noreferrer"  class="link">Twitter</a></p>
-        </div>
-      </div>
-      <div id="copy-stuff" style="visibility: show;">
-        <p>Copied to clipboard</p>
-      </div>
-    </div>
-  </body>
-  <script src="./js/background.js"></script>
-  <script src="./js/intro.js"></script>
-  <script src="./js/nav.js"></script>
-  <script src="./js/age.js"></script>
-  </html>
+	<head>
+		<meta charset="utf-8">
+		<title>Majus-Dev</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+			@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+			html, body{
+				height: 100%;
+				margin: 0;
+				overflow: hidden;
+			}
+
+			body {
+				margin: 0;
+				font: 200 1em Lato,sans-serif;
+				background-color: #11111b;
+				color: #cdd6f4;
+			}
+
+			#main {
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+
+			h1 {
+				font: 100 10rem Montserrat,sans-serif;
+				margin: 0;
+				padding: 0;
+				transition: font 1s ease;
+			}
+			
+			#description {
+				text-align: center;
+				font-size: 2rem;
+			}
+
+			#age {
+				color:#89b4fa;
+			}
+
+			#name {
+				cursor: default;
+			}
+			#overlay {
+				pointer-events: none;
+				height: 100vh;
+				width: 100vw;
+				top: 0;
+				position: absolute;
+				background-repeat: no-repeat;
+				background-attachment: fixed; 
+				background-size: 100% 100%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="overlay"></div>
+		<div id="main">
+			<h1 id="name">majus-dev</h1>
+			<span id="description"><span id="age">21</span> year old backend developer<br><br>
+			2 years experience working for the government <br>making stuff in c# aspnetcore & svelte<br><br>
+			primarily make backend things but i dabble with frontend</span>
+		</div>
+
+	</body>
+	<script>
+		function loop() {
+			const birthday = new Date('06/27/2004');
+			const today = new Date();
+			const age = (Math.round(((today - birthday) / (1000 * 60 * 60 * 24 * 365))*100))/100
+			document.getElementById("age").innerText = age;
+
+			setTimeout(() => {
+				loop();
+			}, 1000);
+		}
+		loop();
+		let lasttimeout = "";
+		document.getElementById("name").addEventListener("click", () => {
+			clearTimeout(lasttimeout);
+			document.getElementById("overlay").style.backgroundImage = "url('https://cdn.7tv.app/emote/01G0473B08000EH6SPD445EVF9/4x.avif')";
+			document.getElementById("name").style.textShadow = "5px 5px 20px #cdd6f4, -5px -5px 20px #cdd6f4, 5px -5px 20px #cdd6f4, -5px 5px 20px #cdd6f4";
+			lasttimeout = setTimeout(() => {
+				document.getElementById("overlay").style.backgroundImage = "";
+				document.getElementById("name").style.textShadow = "";
+				console.log("DONE!!!")
+			}, 5000);
+			console.log("confetti!!!")
+		});
+	</script>
+</html>
