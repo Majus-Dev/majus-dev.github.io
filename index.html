@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Majus-Dev</title>
+		<title>majus-dev</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/gif" href="favicon.gif">
 		<style>
 			html, body{
 				height: 100%;
@@ -28,6 +29,7 @@
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
+				user-select: none;
 			}
 
 			h1 {
@@ -60,8 +62,108 @@
 				background-size: 100% 100%;
 				image-rendering: pixelated;
 			}
+			#particles {
+				pointer-events: none;
+				height: 100vh;
+				width: 100vw;
+				top: 0;
+				position: absolute;
+			}
+			.particle {
+				height: 5px;
+				width: 5px;
+				position: absolute;
+				background-color: #89dceb;
+				border-radius: 2px;
+			}
 
 		</style>
+		<script>
+			let canvas;
+			let clicking = false;
+			let x = 0, y = 0;
+			let particles = [];
+
+			function normalize(x, y) {
+				let length = Math.sqrt(x*x+y*y);
+				x /= length;
+				y /= length;
+				return {x: x, y: y}
+			}
+
+			class Particle {
+				constructor(x,y,vx,vy) {
+					this.x = x;
+					this.y = y;
+					this.vx = vx;
+					this.vy = vy;
+					this.domobject = document.createElement("div");
+					this.domobject.classList = "particle";
+				}
+			}
+
+			addEventListener("DOMContentLoaded", (event) => { 
+				canvas = document.getElementById("particles");
+
+				document.addEventListener("mousedown", () => {
+					clicking = true;
+					for (let i = 0; i < 20; i++) {
+						let dir = normalize((Math.random()*2)-1,(Math.random()*2)-1)
+						let particle_power = 0.5 + Math.random();
+						let particle = new Particle(x, y, dir.x * particle_power, dir.y * particle_power)
+						canvas.appendChild(particle.domobject);
+						particle.domobject.style.top =  `${y}px`
+						particle.domobject.style.left = `${x}px`
+						particles.push(particle)
+					}
+				})
+				document.addEventListener("mouseup", () => {
+					clicking = false;
+				})
+				
+				let lastmousemoveparticle;
+				document.addEventListener("mousemove", (event) => {
+					x = event.clientX;
+					y = event.clientY;
+					if (!clicking) return;
+
+					if (Date.now() < lastmousemoveparticle+80) return;
+
+					lastmousemoveparticle = Date.now();
+
+					for (let i = 0; i < 10; i++) {
+						let dir = normalize((Math.random()*2)-1,(Math.random()*2)-1)
+						let particle_power = 0.2 + Math.random();
+						let particle = new Particle(x, y, dir.x * particle_power, dir.y * particle_power)
+						canvas.appendChild(particle.domobject);
+						particle.domobject.style.top =  `${y}px`
+						particle.domobject.style.left = `${x}px`
+						particles.push(particle)
+					}
+				})
+			});
+
+			let previous;
+			function animate(timestamp) {
+				if (previous === undefined) 
+					previous = timestamp;
+
+				const delta = timestamp - previous;
+				previous = timestamp;
+				for(let particle of particles) {
+					particle.x += particle.vx*delta;
+					particle.y += particle.vy*delta;
+					particle.vy += 9.81*delta*0.0002;
+					particle.domobject.style.top =  `${particle.y}px`;
+					particle.domobject.style.left = `${particle.x}px`;
+				}
+				particles = particles.filter(particle => {
+					return particle.y < window.outerHeight;
+				})
+				requestAnimationFrame(animate)
+			}	
+			requestAnimationFrame(animate)
+		</script>
 	</head>
 	<body>
 		<div id="overlay"></div>
@@ -71,7 +173,7 @@
 			2 years experience working for the government <br>making stuff in c# aspnetcore & svelte<br><br>
 			primarily make backend things but i dabble with frontend</span>
 		</div>
-
+		<div id="particles"></div>
 	</body>
 	<script>
 		function loop() {
@@ -93,9 +195,7 @@
 			lasttimeout = setTimeout(() => {
 				document.getElementById("overlay").style.backgroundImage = "";
 				document.getElementById("name").style.textShadow = "";
-				console.log("DONE!!!")
 			}, 5000);
-			console.log("confetti!!!")
 		});
 	</script>
 </html>
