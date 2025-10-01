@@ -156,6 +156,9 @@
 					particle.vy += 9.81*delta*0.0002;
 					particle.domobject.style.top =  `${particle.y}px`;
 					particle.domobject.style.left = `${particle.x}px`;
+
+					if(particle.y > window.outerHeight)
+						particle.domobject.remove();
 				}
 				particles = particles.filter(particle => {
 					return particle.y < window.outerHeight;
