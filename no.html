@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>majus-dev</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@100&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/gif" href="favicon.gif" />
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            body {
+                margin: 0;
+                font:
+                    200 1em Lato,
+                    sans-serif;
+                background-color: #11111b;
+                color: #cdd6f4;
+            }
+
+            #main {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                user-select: none;
+            }
+
+            h1 {
+                font:
+                    100 10rem Montserrat,
+                    sans-serif;
+                margin: 0;
+                padding: 0;
+                transition: font 1s ease;
+            }
+
+            #description {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            a,
+            #age {
+                color: #89b4fa;
+            }
+            a:hover,
+            a:focus,
+            a:visited {
+                color: #5e90e6;
+            }
+
+            #name {
+                cursor: default;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="overlay"></div>
+        <div id="main">
+            <h1 id="name">marius</h1>
+            <span id="description"
+                ><span id="age">21</span> år gammel fullstack-utvikler
+                <br /><br />
+                <span>2 års erfaring med å jobbe hos fylket </span><br />
+                <span>og lage ting med aspnetcore og svelte</span><br />
+                <span>hovedsaklig backend greier </span><br />
+                <span>men driver også med frontend </span><br />
+                <span><a href="https://github.com/majus-dev">github</a></span>
+            </span>
+        </div>
+    </body>
+    <script>
+        function loop() {
+            const birthday = new Date("06/27/2004");
+            const today = new Date();
+            const age =
+                Math.round(
+                    ((today - birthday) / (1000 * 60 * 60 * 24 * 365)) * 100,
+                ) / 100;
+            document.getElementById("age").innerText = age;
+
+            setTimeout(() => {
+                loop();
+            }, 1000);
+        }
+        loop();
+    </script>
+</html>
