@@ -1,0 +1,85 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    font:
+        200 1em Lato,
+        sans-serif;
+    background-color: #11111b;
+    color: #cdd6f4;
+}
+
+#main {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+#gamba {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    user-select: none;
+}
+
+h1 {
+    font:
+        100 10rem Montserrat,
+        sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: font 1s ease;
+}
+
+#description {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#age {
+    color: #89b4fa;
+}
+
+#name {
+    cursor: default;
+    text-align: center;
+}
+#overlay {
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+#particles {
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    position: absolute;
+}
+.particle {
+    height: 5px;
+    width: 5px;
+    position: absolute;
+    background-color: #89dceb;
+    border-radius: 2px;
+}
