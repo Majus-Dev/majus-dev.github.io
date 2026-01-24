@@ -126,11 +126,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#gambago").addEventListener("click", async () => {
         await GambaGoGamba()
-    })
+    });
+
+    money = Number(localStorage.getItem("cashmoneyganggang") ?? 50);
+    updatemoney();
 });
+
+const updatemoney = () => {
+    localStorage.setItem("cashmoneyganggang", money)
+    document.querySelector("#money").textContent = `$${money}`
+}
 
 const speed = 3;
 let spinning = false;
+let canstop = false;
 async function GambaGoGamba() {
     const gamba_amount = Number(document.querySelector("#gambamount").value);
     if (gamba_amount > money) return "ermm";
@@ -142,25 +151,32 @@ async function GambaGoGamba() {
         slot.target = random(0,count-1);
     }
     spinning = true;
+    canstop = false;
+    previous = undefined;
+    money = round(money-gamba_amount);
+    updatemoney();
+
+    // console.log(`${reel[slots[0].target]} | ${reel[slots[1].target]} | ${reel[slots[2].target]}`)
     //start frame thing
     requestAnimationFrame(frame)
 
     for(let slot of slots) {
         slot.targetpos = (speed*height*count)+(slot.target*height);
         slot.spinning = true;
-        console.log(slot)
+        // console.log(slot.targetpos-slot.startpos)
         await wait(random(50,200));
         
         // slot.position = slot.targetpos
         // slot.dom_element.style.transform = `translateY(${-((slot.position)%(height*count))+offset+height}px`
     }
+    canstop = true;
 }
 
 const speedvariable = 5;
-let previous = 0;
+let previous;
 function frame(timestamp) {
     if (!spinning) return;
-
+    if (previous === undefined) previous = timestamp
     const delta = Number(timestamp-previous)/1000;
     previous = timestamp;
     
@@ -171,18 +187,70 @@ function frame(timestamp) {
         slot.t = Math.min(1, slot.t+delta/speedvariable);
         if (slot.t >= 1) slot.spinning = false;
     }
-    if (slots.every(a => !a.spinning)) {
-        dothemoneything();
+    if (slots.every(a => !a.spinning) && canstop) {
+        dothemoneything(Number(document.querySelector("#gambamount").value));
         spinning = false;
     }
     requestAnimationFrame(frame)
 }
 
-function dothemoneything() {
-
+function dothemoneything(gamba_amount) {
+    let multiplier =  gamba.filter(a => a.name == reel[slots[0].target])[0].mult;
+    const primary =   reel[slots[0].target] == reel[slots[1].target] && reel[slots[1].target] == reel[slots[2].target]; 
+    const secondary = reel[slots[0].target] == reel[slots[1].target] && reel[slots[1].target] != reel[slots[2].target];
+    if (primary) {
+        money += gamba_amount*multiplier;
+    }
+    else if (secondary) {
+        money += Math.ceil((gamba_amount*multiplier/10)*100)/100;
+    }
+    money = round(money);
+    updatemoney();
+    console.log(primary, secondary)
+    slots.forEach(slot => slot.target = -1);
 }
 
 const Qlerp = (a, b, t) => a + (b - a) * ((t = Math.max(0, Math.min(1, t))) * (2 - t));
 const lerp = (start, end, t) => start + (end - start) * t;
 const random = (from, to) => Math.floor(Math.random() * (to-(from+1)))+from;
 const wait = (duration) => new Promise(resolve => {setTimeout(resolve,duration)});
+const round = (value) => Math.round(value*100)/100
+
+
+// controls the betting amount thing
+document.addEventListener("DOMContentLoaded", () => {
+    let betting_amount = Number(localStorage.getItem("ba") ?? 0.01);
+    
+    function increase_betting_amount() {
+        if (spinning) return;
+        betting_amount = Number(document.querySelector("#gambamount").value);
+        betting_amount = Math.round((betting_amount+0.01)*1000)/1000;
+        document.querySelector("#gambamount").value = betting_amount
+        localStorage.setItem("ba", betting_amount)
+    }
+    document.querySelector("#gambainc").addEventListener("click", increase_betting_amount);
+    
+    function decrease_betting_amount() {
+        if (spinning) return;
+        betting_amount = Number(document.querySelector("#gambamount").value);
+        betting_amount = Math.max(0.01, Math.round((betting_amount-0.01)*1000)/1000);
+        document.querySelector("#gambamount").value = betting_amount
+        localStorage.setItem("ba", betting_amount)
+    }
+    document.querySelector("#gambadec").addEventListener("click", decrease_betting_amount);
+    
+    document.querySelector("#gambamount").addEventListener("change", () => {
+        if (spinning) {
+            document.querySelector("#gambamount").value = betting_amount;
+            console.log("hey i saw you trying to cheat")
+        }
+        let val = Number(document.querySelector("#gambamount").value) 
+        if (val <= 0 ) val = 0.01;
+        if (isNaN(val)) val = 0.01;
+        betting_amount = val;
+        betting_amount = Math.round((betting_amount)*1000)/1000;
+    
+        document.querySelector("#gambamount").value = betting_amount
+        localStorage.setItem("ba", betting_amount)
+    });
+})    

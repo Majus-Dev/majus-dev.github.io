@@ -56,6 +56,7 @@
                     </div>
                     <div class="mx-8 mb-8 border-zinc-900 border rounded-xl w-full max-w-4xl flex flex-row items-center justify-between">
                         <div class="my-4 mx-16">
+                            <span class="text-2xl">$</span>
                             <input id="gambamount" type="number" class="p-2 bg-zinc-900 text-2xl rounded-xl [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" min="0.00" max="10000.00" step="0.01" value="0.01" /> 
                             <button id="gambainc" class="p-2 bg-zinc-900 hover:bg-zinc-800 text-2xl rounded-xl h-12 w-12 cursor-pointer">+</button>
                             <button id="gambadec" class="p-2 bg-zinc-900 hover:bg-zinc-800 text-2xl rounded-xl h-12 w-12 cursor-pointer">-</button>
@@ -78,34 +79,4 @@
             <div id="icons" class="hidden"></div>
         </div>
     </body>
-    <script>
-        let betting_amount = Number(localStorage.getItem("ba") ?? 0.01);
-
-        function increase_betting_amount() {
-            betting_amount = Number(document.querySelector("#gambamount").value);
-            betting_amount = Math.round((betting_amount+0.01)*1000)/1000;
-            document.querySelector("#gambamount").value = betting_amount
-            localStorage.setItem("ba", betting_amount)
-        }
-        function decrease_betting_amount() {
-            betting_amount = Number(document.querySelector("#gambamount").value);
-            betting_amount = Math.max(0.01, Math.round((betting_amount-0.01)*1000)/1000);
-            document.querySelector("#gambamount").value = betting_amount
-            localStorage.setItem("ba", betting_amount)
-        }
-        document.querySelector("#gambainc").addEventListener("click", increase_betting_amount)
-        document.querySelector("#gambadec").addEventListener("click", decrease_betting_amount)
-        document.querySelector("#gambamount").addEventListener("change", () => {
-            let val = Number(document.querySelector("#gambamount").value) 
-            if (val <= 0 ) val = 0.01;
-            if (isNaN(val)) val = 0.01;
-            betting_amount = val;
-            betting_amount = Math.round((betting_amount+0.01)*1000)/1000;
-
-            document.querySelector("#gambamount").value = betting_amount
-            localStorage.setItem("ba", betting_amount)
-        });
-
-
-    </script>
 </html>
