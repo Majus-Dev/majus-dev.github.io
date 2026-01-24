@@ -37,7 +37,7 @@
                     <div class="m-8 border-zinc-900 border rounded-xl w-full max-w-4xl">
                         <div class="m-4 flex items-center justify-center text-3xl"><span>majus' slop slot machine</span></div>
                     </div>
-                    <div class="mx-8 mb-8 border-zinc-900 border rounded-xl w-full max-w-4xl flex flex-row items-center justify-around h-72">
+                    <div class="relative mx-8 mb-8 border-zinc-900 border rounded-xl w-full max-w-4xl flex flex-row items-center justify-around h-[432px]">
                         <div id="slot1" class="h-full w-36 aspect-square #bg-red-500 rounded-sm flex justify-center items-center my-2 relative">
                             <div class="h-full w-36 overflow-hidden" id="reel1"></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950"></div>
@@ -49,6 +49,9 @@
                         <div id="slot3" class="h-full w-36 aspect-square #bg-red-500 rounded-sm flex justify-center items-center my-2 relative">
                             <div class="h-full w-36 overflow-hidden" id="reel3"></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950"></div>
+                        </div>
+                        <div class="absolute h-8 w-full bg-gradient-to-t from-zinc-950 via-zinc-900 to-zinc-950 -z-50">
+
                         </div>
                     </div>
                     <div class="mx-8 mb-8 border-zinc-900 border rounded-xl w-full max-w-4xl flex flex-row items-center justify-between">
@@ -86,15 +89,20 @@
         }
         function decrease_betting_amount() {
             betting_amount = Number(document.querySelector("#gambamount").value);
-            betting_amount = Math.round((betting_amount-0.01)*1000)/1000;
+            betting_amount = Math.max(0.01, Math.round((betting_amount-0.01)*1000)/1000);
             document.querySelector("#gambamount").value = betting_amount
             localStorage.setItem("ba", betting_amount)
         }
         document.querySelector("#gambainc").addEventListener("click", increase_betting_amount)
         document.querySelector("#gambadec").addEventListener("click", decrease_betting_amount)
         document.querySelector("#gambamount").addEventListener("change", () => {
-            betting_amount = Number(document.querySelector("#gambamount").value);
-            betting_amount = Math.round((betting_amount)*1000)/1000;
+            let val = Number(document.querySelector("#gambamount").value) 
+            if (val <= 0 ) val = 0.01;
+            if (isNaN(val)) val = 0.01;
+            betting_amount = val;
+            betting_amount = Math.round((betting_amount+0.01)*1000)/1000;
+
+            document.querySelector("#gambamount").value = betting_amount
             localStorage.setItem("ba", betting_amount)
         });
 
